@@ -94,13 +94,30 @@
     background: var(--accent); width: 0%;
     transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
+  .tabs-wrap {
+    position: relative;
+    margin-bottom: 22px;
+  }
+  .tabs-wrap::after {
+    content: '';
+    position: absolute;
+    right: 0; top: 0; bottom: 8px;
+    width: 40px;
+    background: linear-gradient(to right, transparent, var(--paper) 70%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .tabs-wrap.has-overflow::after { opacity: 1; }
   .tabs {
     display: flex; gap: 4px;
-    margin-bottom: 22px;
     overflow-x: auto;
+    overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
     padding-bottom: 8px;
+    padding-right: 44px;
     scrollbar-width: none;
+    scroll-behavior: smooth;
   }
   .tabs::-webkit-scrollbar { display: none; }
   .tab {
@@ -118,7 +135,29 @@
     font-weight: 500;
     border-radius: 0;
     -webkit-appearance: none;
+    white-space: nowrap;
   }
+  .next-tab-btn {
+    position: absolute;
+    right: 0; top: 0;
+    height: calc(100% - 8px);
+    width: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    color: var(--ink);
+    cursor: pointer;
+    z-index: 2;
+    -webkit-appearance: none;
+    padding: 0;
+    border-radius: 0;
+  }
+  .next-tab-btn:active { background: var(--ink); color: var(--paper); }
+  .next-tab-btn.hidden { display: none; }
   .tab.active { background: var(--ink); color: var(--paper); }
   .tab .tab-done {
     display: inline-block; width: 6px; height: 6px;
@@ -487,7 +526,10 @@
       </div>
       <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
     </div>
-    <nav class="tabs" id="tabs"></nav>
+    <div class="tabs-wrap" id="tabs-wrap">
+      <nav class="tabs" id="tabs"></nav>
+      <button class="next-tab-btn hidden" id="next-tab-btn" aria-label="Siguiente pestaña">›</button>
+    </div>
     <main id="sections"></main>
     <div class="ornament" id="ornament" style="display:none;">· · ·</div>
   </div>
@@ -867,6 +909,10 @@ function renderAll(savedAnswers) {
   attachListeners();
   initDragAndDrop();
   updateAllProgress();
+  updateNextTabButton();
+  // Also re-check on scroll (in case user scrolls tabs manually)
+  const tabsEl = document.getElementById('tabs');
+  if (tabsEl) tabsEl.addEventListener('scroll', updateNextTabButton, { passive: true });
 }
 
 function renderFillBlank(s, saved) {
@@ -1002,12 +1048,49 @@ function renderMatch(s, saved) {
 // ============================================================
 // LISTENERS + DRAG/DROP
 // ============================================================
+function scrollActiveTabIntoView() {
+  const active = document.querySelector('.tab.active');
+  const tabsEl = document.getElementById('tabs');
+  if (!active || !tabsEl) return;
+  const aLeft = active.offsetLeft;
+  const aRight = aLeft + active.offsetWidth;
+  const visibleLeft = tabsEl.scrollLeft;
+  const visibleRight = visibleLeft + tabsEl.clientWidth;
+  if (aRight > visibleRight - 8) {
+    tabsEl.scrollTo({ left: aRight - tabsEl.clientWidth + 8, behavior: 'smooth' });
+  } else if (aLeft < visibleLeft + 8) {
+    tabsEl.scrollTo({ left: Math.max(0, aLeft - 8), behavior: 'smooth' });
+  }
+}
+
+function updateNextTabButton() {
+  const tabsEl = document.getElementById('tabs');
+  const wrap = document.getElementById('tabs-wrap');
+  const btn = document.getElementById('next-tab-btn');
+  if (!tabsEl || !btn || !wrap) return;
+  const hasOverflow = tabsEl.scrollWidth > tabsEl.clientWidth + 2;
+  wrap.classList.toggle('has-overflow', hasOverflow);
+  // Show next button if current active tab is not the last one
+  const tabs = Array.from(tabsEl.querySelectorAll('.tab'));
+  const activeIdx = tabs.findIndex(t => t.classList.contains('active'));
+  const isLast = activeIdx === tabs.length - 1;
+  btn.classList.toggle('hidden', isLast || tabs.length < 2);
+}
+
+function goToNextTab() {
+  const tabsEl = document.getElementById('tabs');
+  if (!tabsEl) return;
+  const tabs = Array.from(tabsEl.querySelectorAll('.tab'));
+  const activeIdx = tabs.findIndex(t => t.classList.contains('active'));
+  if (activeIdx < 0 || activeIdx >= tabs.length - 1) return;
+  tabs[activeIdx + 1].click();
+}
+
 function attachListeners() {
   document.querySelectorAll('input[data-answer-id], textarea[data-answer-id]').forEach(el => {
     el.addEventListener('input', () => { queueSave(); updateAllProgress(); });
     el.addEventListener('blur', queueSave);
-  });
-  document.querySelectorAll('.mc-option').forEach(btn => {
+  });  document.querySelectorAll('.mc-option').forEach(btn => {
     btn.addEventListener('click', () => {
       const id = btn.dataset.answerId;
       document.querySelectorAll(`.mc-option[data-answer-id="${id}"]`).forEach(b => b.classList.remove('selected'));
@@ -1024,6 +1107,8 @@ function attachListeners() {
       tab.classList.add('active');
       const target = document.querySelector(`.section[data-section="${id}"]`);
       if (target) target.classList.add('active');
+      scrollActiveTabIntoView();
+      updateNextTabButton();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   });
@@ -1369,11 +1454,13 @@ async function boot() {
   document.getElementById('reset-confirm').addEventListener('click', doReset);
   document.getElementById('preview-close').addEventListener('click', hidePreviewModal);
   document.getElementById('preview-copy').addEventListener('click', copyFromPreview);
+  document.getElementById('next-tab-btn').addEventListener('click', goToNextTab);
   document.getElementById('reset-modal').addEventListener('click', (e) => { if (e.target.id === 'reset-modal') hideReset(); });
   document.getElementById('share-modal').addEventListener('click', (e) => { if (e.target.id === 'share-modal') hideShare(); });
   document.getElementById('preview-modal').addEventListener('click', (e) => { if (e.target.id === 'preview-modal') hidePreviewModal(); });
 
   window.addEventListener('pagehide', () => cloudSave(getAllAnswers()));
+  window.addEventListener('resize', () => { updateNextTabButton(); }, { passive: true });
   document.addEventListener('visibilitychange', () => { if (document.hidden) cloudSave(getAllAnswers()); });
   // When tab becomes visible, reload from cloud in case another device updated
   document.addEventListener('visibilitychange', async () => {
