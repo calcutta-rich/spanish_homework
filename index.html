@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#f4ead5">
-<title>Ejercicios · Subjuntivo WS 10</title>
+<title>Ejercicios</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -231,226 +230,206 @@
   }
   .conj-input:focus { border-bottom: 2px solid var(--accent); }
   .conj-input.given { color: var(--green); font-weight: 500; background: var(--paper-dark); pointer-events: none; }
-
-/* Drag and drop (Exercise 5) */
-.match-hint {
-background: var(–paper-dark);
-padding: 10px 12px;
-margin-bottom: 18px;
-font-size: 13px;
-color: var(–ink-soft);
-font-style: italic;
-border-left: 3px solid var(–accent-soft);
-line-height: 1.4;
-}
-.match-section-header {
-font-family: ‘IBM Plex Mono’, monospace;
-font-size: 11px; letter-spacing: 0.15em;
-text-transform: uppercase; color: var(–accent);
-margin: 14px 0 10px; font-weight: 500;
-}
-.bubbles-pool {
-display: flex; flex-direction: column; gap: 10px;
-margin-bottom: 18px;
-padding: 12px;
-background: rgba(248, 234, 197, 0.4);
-border: 1.5px dashed var(–rule);
-min-height: 60px;
-}
-.bubbles-pool.empty::before {
-content: ‘(todas asignadas)’;
-font-family: ‘IBM Plex Mono’, monospace;
-font-size: 11px;
-color: var(–ink-soft);
-letter-spacing: 0.1em;
-text-align: center;
-padding: 8px;
-}
-.bubble {
-background: var(–paper);
-border: 1.5px solid var(–ink);
-padding: 10px 14px;
-font-size: 15px;
-line-height: 1.4;
-color: var(–ink);
-font-style: italic;
-cursor: grab;
-touch-action: none;
-user-select: none;
--webkit-user-select: none;
-position: relative;
-transition: transform 0.15s, box-shadow 0.15s;
-border-radius: 0;
-}
-.bubble:active { cursor: grabbing; }
-.bubble.dragging {
-opacity: 0.5;
-transform: scale(1.02);
-}
-.bubble-ghost {
-position: fixed;
-pointer-events: none;
-z-index: 9999;
-background: var(–paper);
-border: 1.5px solid var(–accent);
-padding: 10px 14px;
-font-size: 15px;
-font-style: italic;
-color: var(–ink);
-box-shadow: 4px 4px 0 var(–ink);
-max-width: 300px;
-line-height: 1.4;
-}
-.person-grid {
-display: grid;
-grid-template-columns: 1fr;
-gap: 10px;
-}
-.person-card {
-background: var(–paper);
-border: 1.5px solid var(–ink);
-padding: 12px 14px;
-min-height: 70px;
-display: flex;
-flex-direction: column;
-gap: 8px;
-transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
-}
-.person-card.drop-target {
-background: var(–highlight);
-border-color: var(–accent);
-border-width: 2px;
-box-shadow: inset 0 0 0 2px rgba(168, 50, 30, 0.2);
-}
-.person-card.filled { border-color: var(–green); }
-.person-label {
-font-family: ‘IBM Plex Mono’, monospace;
-font-size: 11px;
-letter-spacing: 0.1em;
-text-transform: uppercase;
-color: var(–accent);
-font-weight: 500;
-}
-.person-desc {
-font-size: 14px;
-color: var(–ink);
-line-height: 1.4;
-}
-.person-card .bubble {
-background: var(–paper-dark);
-border-color: var(–ink-soft);
-margin-top: 4px;
-}
-.clear-match {
-align-self: flex-end;
-font-family: ‘IBM Plex Mono’, monospace;
-font-size: 10px;
-letter-spacing: 0.1em;
-text-transform: uppercase;
-background: transparent;
-border: none;
-color: var(–accent);
-cursor: pointer;
-padding: 2px 6px;
-margin-top: 4px;
-text-decoration: underline;
-}
-
-.actions {
-position: fixed; bottom: 0; left: 0; right: 0;
-background: var(–paper);
-border-top: 2px solid var(–ink);
-padding: 12px 16px;
-padding-bottom: calc(12px + env(safe-area-inset-bottom));
-display: flex; gap: 10px; z-index: 100;
-box-shadow: 0 -4px 20px var(–shadow);
-}
-.actions-inner { max-width: 680px; margin: 0 auto; display: flex; gap: 10px; width: 100%; }
-button {
-flex: 1;
-font-family: ‘IBM Plex Mono’, monospace;
-font-size: 12px; font-weight: 500;
-letter-spacing: 0.1em; text-transform: uppercase;
-padding: 14px 12px;
-border: 1.5px solid var(–ink);
-background: var(–paper); color: var(–ink);
-cursor: pointer; transition: all 0.15s ease;
-border-radius: 0; -webkit-appearance: none;
-}
-button:active { transform: translateY(1px); }
-button.primary { background: var(–ink); color: var(–paper); }
-button.primary:active { background: var(–accent); border-color: var(–accent); }
-button.secondary:active { background: var(–paper-dark); }
-button.copied { background: var(–green) !important; border-color: var(–green) !important; color: var(–paper) !important; }
-.saved-indicator {
-position: fixed; top: 16px; right: 16px;
-background: var(–green); color: var(–paper);
-font-family: ‘IBM Plex Mono’, monospace;
-font-size: 11px; letter-spacing: 0.1em;
-text-transform: uppercase; padding: 8px 14px;
-opacity: 0; transition: opacity 0.3s;
-pointer-events: none; z-index: 200;
-}
-.saved-indicator.show { opacity: 1; }
-.modal-backdrop {
-position: fixed; inset: 0;
-background: rgba(42, 31, 20, 0.5);
-display: none; align-items: center; justify-content: center;
-z-index: 300; padding: 20px;
-}
-.modal-backdrop.show { display: flex; }
-.modal {
-background: var(–paper);
-border: 2px solid var(–ink);
-padding: 24px 20px;
-max-width: 360px; width: 100%;
-box-shadow: 8px 8px 0 var(–ink);
-}
-.modal h3 { font-style: italic; font-weight: 600; font-size: 22px; margin: 0 0 10px; }
-.modal p { font-size: 14px; color: var(–ink-soft); margin: 0 0 18px; line-height: 1.5; }
-.modal-actions { display: flex; gap: 10px; }
-.preview-modal .modal { max-width: 520px; }
-.preview-text {
-background: var(–paper-dark);
-border: 1px solid var(–rule);
-padding: 12px;
-font-family: ‘IBM Plex Mono’, monospace;
-font-size: 12px; line-height: 1.6;
-color: var(–ink); max-height: 50vh;
-overflow-y: auto; white-space: pre-wrap;
-margin-bottom: 14px;
--webkit-user-select: all; user-select: all;
-}
-.ornament {
-text-align: center; font-style: italic;
-color: var(–rule); font-size: 18px;
-letter-spacing: 0.5em; margin: 30px 0 10px;
-user-select: none;
-}
-@media (max-width: 420px) {
-body { padding: 16px 12px 130px; }
-.sentence { font-size: 15px; }
-.blank { font-size: 15px; min-width: 70px; }
-button { font-size: 11px; padding: 13px 8px; }
-.letter { width: 26px; height: 26px; font-size: 13px; }
-.conj-pronoun { flex: 0 0 105px; font-size: 10px; }
-.tab { font-size: 10px; padding: 9px 11px; }
-.mc-option { font-size: 15px; padding: 7px 12px; }
-.bubble { font-size: 14px; }
-.person-desc { font-size: 13px; }
-}
-@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+  .match-hint {
+    background: var(--paper-dark);
+    padding: 10px 12px;
+    margin-bottom: 18px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-style: italic;
+    border-left: 3px solid var(--accent-soft);
+    line-height: 1.4;
+  }
+  .match-section-header {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--accent);
+    margin: 14px 0 10px; font-weight: 500;
+  }
+  .bubbles-pool {
+    display: flex; flex-direction: column; gap: 10px;
+    margin-bottom: 18px;
+    padding: 12px;
+    background: rgba(248, 234, 197, 0.4);
+    border: 1.5px dashed var(--rule);
+    min-height: 60px;
+  }
+  .bubbles-pool.empty::before {
+    content: '(todas asignadas)';
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-soft);
+    letter-spacing: 0.1em;
+    text-align: center;
+    padding: 8px;
+  }
+  .bubble {
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    padding: 10px 14px;
+    font-size: 15px;
+    line-height: 1.4;
+    color: var(--ink);
+    font-style: italic;
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+    position: relative;
+    transition: transform 0.15s, box-shadow 0.15s;
+    border-radius: 0;
+  }
+  .bubble:active { cursor: grabbing; }
+  .bubble.dragging { opacity: 0.5; transform: scale(1.02); }
+  .bubble-ghost {
+    position: fixed; pointer-events: none; z-index: 9999;
+    background: var(--paper);
+    border: 1.5px solid var(--accent);
+    padding: 10px 14px;
+    font-size: 15px; font-style: italic; color: var(--ink);
+    box-shadow: 4px 4px 0 var(--ink);
+    max-width: 300px; line-height: 1.4;
+  }
+  .person-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+  .person-card {
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    padding: 12px 14px;
+    min-height: 70px;
+    display: flex; flex-direction: column; gap: 8px;
+    transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+  }
+  .person-card.drop-target {
+    background: var(--highlight);
+    border-color: var(--accent);
+    border-width: 2px;
+    box-shadow: inset 0 0 0 2px rgba(168, 50, 30, 0.2);
+  }
+  .person-card.filled { border-color: var(--green); }
+  .person-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--accent); font-weight: 500;
+  }
+  .person-desc { font-size: 14px; color: var(--ink); line-height: 1.4; }
+  .person-card .bubble { background: var(--paper-dark); border-color: var(--ink-soft); margin-top: 4px; }
+  .clear-match {
+    align-self: flex-end;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    background: transparent; border: none;
+    color: var(--accent); cursor: pointer;
+    padding: 2px 6px; margin-top: 4px;
+    text-decoration: underline;
+  }
+  .actions {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: var(--paper);
+    border-top: 2px solid var(--ink);
+    padding: 12px 16px;
+    padding-bottom: calc(12px + env(safe-area-inset-bottom));
+    display: flex; gap: 10px; z-index: 100;
+    box-shadow: 0 -4px 20px var(--shadow);
+  }
+  .actions-inner { max-width: 680px; margin: 0 auto; display: flex; gap: 10px; width: 100%; }
+  button {
+    flex: 1;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 14px 12px;
+    border: 1.5px solid var(--ink);
+    background: var(--paper); color: var(--ink);
+    cursor: pointer; transition: all 0.15s ease;
+    border-radius: 0; -webkit-appearance: none;
+  }
+  button:active { transform: translateY(1px); }
+  button.primary { background: var(--ink); color: var(--paper); }
+  button.primary:active { background: var(--accent); border-color: var(--accent); }
+  button.secondary:active { background: var(--paper-dark); }
+  button.copied { background: var(--green) !important; border-color: var(--green) !important; color: var(--paper) !important; }
+  .saved-indicator {
+    position: fixed; top: 16px; right: 16px;
+    background: var(--green); color: var(--paper);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 8px 14px;
+    opacity: 0; transition: opacity 0.3s;
+    pointer-events: none; z-index: 200;
+  }
+  .saved-indicator.show { opacity: 1; }
+  .modal-backdrop {
+    position: fixed; inset: 0;
+    background: rgba(42, 31, 20, 0.5);
+    display: none; align-items: center; justify-content: center;
+    z-index: 300; padding: 20px;
+  }
+  .modal-backdrop.show { display: flex; }
+  .modal {
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    padding: 24px 20px;
+    max-width: 360px; width: 100%;
+    box-shadow: 8px 8px 0 var(--ink);
+  }
+  .modal h3 { font-style: italic; font-weight: 600; font-size: 22px; margin: 0 0 10px; }
+  .modal p { font-size: 14px; color: var(--ink-soft); margin: 0 0 18px; line-height: 1.5; }
+  .modal-actions { display: flex; gap: 10px; }
+  .preview-modal .modal { max-width: 520px; }
+  .preview-text {
+    background: var(--paper-dark);
+    border: 1px solid var(--rule);
+    padding: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px; line-height: 1.6;
+    color: var(--ink); max-height: 50vh;
+    overflow-y: auto; white-space: pre-wrap;
+    margin-bottom: 14px;
+    -webkit-user-select: all; user-select: all;
+  }
+  .ornament {
+    text-align: center; font-style: italic;
+    color: var(--rule); font-size: 18px;
+    letter-spacing: 0.5em; margin: 30px 0 10px;
+    user-select: none;
+  }
+  .status-box {
+    background: var(--paper-dark);
+    border: 1.5px solid var(--rule);
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--ink-soft);
+    font-style: italic;
+    line-height: 1.5;
+    margin: 40px auto;
+    max-width: 500px;
+  }
+  .status-box.error { border-color: var(--accent); background: rgba(168, 50, 30, 0.06); color: var(--ink); }
+  .status-box strong { color: var(--accent); }
+  @media (max-width: 420px) {
+    body { padding: 16px 12px 130px; }
+    .sentence { font-size: 15px; }
+    .blank { font-size: 15px; min-width: 70px; }
+    button { font-size: 11px; padding: 13px 8px; }
+    .letter { width: 26px; height: 26px; font-size: 13px; }
+    .conj-pronoun { flex: 0 0 105px; font-size: 10px; }
+    .tab { font-size: 10px; padding: 9px 11px; }
+    .mc-option { font-size: 15px; padding: 7px 12px; }
+    .bubble { font-size: 14px; }
+    .person-desc { font-size: 13px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
-
 </head>
 <body>
   <div class="container">
     <header>
-      <div class="eyebrow">Español I · IBS</div>
-      <h1>Presente de Subjuntivo</h1>
-      <div class="subtitle">WS 10 · lección 12 · actividades extra</div>
+      <div class="eyebrow" id="eyebrow">Ejercicios</div>
+      <h1 id="title">Cargando...</h1>
+      <div class="subtitle" id="subtitle"></div>
     </header>
-    <div class="progress-wrap">
+    <div class="progress-wrap" id="progress-wrap" style="display:none;">
       <div class="progress-label">
         <span>Progreso total</span>
         <span><strong id="progress-count">0</strong> / <span id="progress-total">0</span></span>
@@ -459,10 +438,10 @@ button { font-size: 11px; padding: 13px 8px; }
     </div>
     <nav class="tabs" id="tabs"></nav>
     <main id="sections"></main>
-    <div class="ornament">· · ·</div>
+    <div class="ornament" id="ornament" style="display:none;">· · ·</div>
   </div>
   <div class="saved-indicator" id="saved">Guardado</div>
-  <div class="actions">
+  <div class="actions" id="actions" style="display:none;">
     <div class="actions-inner">
       <button class="secondary" id="reset-btn">Reiniciar</button>
       <button class="primary" id="copy-btn">Copiar respuestas</button>
@@ -490,718 +469,820 @@ button { font-size: 11px; padding: 13px 8px; }
     </div>
   </div>
 <script>
-const ASSIGNMENT_TITLE = 'Presente de Subjuntivo — WS 10, lección 12';
-const STORAGE_KEY = 'subjuntivo-ws10-v2';
+// ============================================================
+// PARSER: converts homework.txt into SECTIONS data structure
+// Designed to tolerate iOS smart quotes, em-dashes, etc.
+// ============================================================
 
-const SECTIONS = [
-{
-id: ‘ex1’, tab: ‘Ej. 1’, title: ‘Ejercicio 1’,
-instructions: ‘Escribe la forma correcta del presente de subjuntivo para formular deseos.’,
-type: ‘fill-blank’,
-items: [
-{ id: ‘1a’, letter: ‘a’, pre: ’Espero que ‘, verb: ‘tener, tú’, post: ’ suerte en el examen de mañana.’ },
-{ id: ‘1b’, letter: ‘b’, pre: ’Ojalá que ‘, verb: ‘encontrar, yo’, post: ’ trabajo este año.’ },
-{ id: ‘1c’, letter: ‘c’, pre: ’Deseo que ‘, verb: ‘decir, él’, post: ’ toda la verdad a ella.’ },
-{ id: ‘1d’, letter: ‘d’, pre: ’¡Que ‘, verb: ‘tener, tú’, post: ’ un buen día!’ },
-{ id: ‘1e’, letter: ‘e’, pre: ’Espero que ‘, verb: ‘tener, yo’, post: ’ una buena nota en la evaluación.’ },
-{ id: ‘1f’, letter: ‘f’, pre: ’Ojalá que ellos me ‘, verb: ‘invitar’, post: ’ a una entrevista de trabajo.’ },
-{ id: ‘1g’, letter: ‘g’, pre: ’Espero que Mario ‘, verb: ‘estar’, post: ’ en la oficina para hablar con él.’ },
-{ id: ‘1h’, letter: ‘h’, pre: ’Ojalá que ‘, verb: ‘llegar, tú’, post: ’ pronto a casa.’ },
-{ id: ‘1i’, letter: ‘i’, pre: ’Espero que Luisa ‘, verb: ‘estudiar’, post: ’ mucho en la universidad.’ },
-{ id: ‘1j’, letter: ‘j’, pre: ’Deseo que María y Javier ‘, verb: ‘casarse’, post: ’ en 2011.’ }
-]
-},
-{
-id: ‘ex2’, tab: ‘Ej. 2’, title: ‘Ejercicio 2’,
-instructions: ‘Escribe la forma correcta del presente de subjuntivo para expresar voluntad.’,
-type: ‘fill-blank’,
-items: [
-{ id: ‘2a’, letter: ‘a’, pre: ’Quiero que ‘, verb: ‘venir, tú’, post: ’ a la fiesta de fin de curso.’ },
-{ id: ‘2b’, letter: ‘b’, pre: ’Necesito que ‘, verb: ‘comprar, ella’, post: ’ más papel para la impresora.’ },
-{ id: ‘2c’, letter: ‘c’, pre: ’Te prohibo que tú ‘, verb: ‘fumar’, post: ’ en esta sala, hay niños.’ },
-{ id: ‘2d’, letter: ‘d’, pre: ’Quiero que ‘, verb: ‘ir, tú’, post: ’ a Uruguay para estudiar en este país.’ },
-{ id: ‘2e’, letter: ‘e’, pre: ’Te pido que ‘, verb: ‘hablar, tú’, post: ’ con él, hay cosas que aclarar.’ },
-{ id: ‘2f’, letter: ‘f’, pre: ’Necesito que ellos me ‘, verb: ‘dar’, post: ’ el visado lo antes posible.’ },
-{ id: ‘2g’, letter: ‘g’, pre: ’Quiero que ‘, verb: ‘vender, nosotros’, post: ’ el coche, solo tiene problemas.’ },
-{ id: ‘2h’, letter: ‘h’, pre: ’Os prohibo a vosotros que ‘, verb: ‘comer’, post: ’ en clase, no es educado.’ },
-{ id: ‘2i’, letter: ‘i’, pre: ’Necesito que me ‘, verb: ‘informar, tú’, post: ’ de todos los detalles de la reunión.’ },
-{ id: ‘2j’, letter: ‘j’, pre: ’Queremos que nuestro hijo ‘, verb: ‘tener’, post: ’ una buena educación.’ },
-{ id: ‘2k’, letter: ‘k’, pre: ’Quiero que ‘, verb: ‘mejorar, vosotros’, post: ’ vuestro estilo de dirección.’ },
-{ id: ‘2l’, letter: ‘l’, pre: ’Te pido que ‘, verb: ‘hacer’, post: ’ todas las actividades de este libro.’ },
-{ id: ‘2m’, letter: ‘m’, pre: ’Necesita que tú ‘, verb: ‘escribir’, post: ’ correo en español con la información de la reunión.’ },
-{ id: ‘2n’, letter: ‘n’, pre: ’Necesito que ‘, verb: ‘comprar, tú’, post: ’ un nuevo móvil, el tuyo no funciona.’ },
-{ id: ‘2o’, letter: ‘o’, pre: ’Te prohibo que ‘, verb: ‘entrar, tú’, post: ’ a la oficina con ese aspecto informal.’ },
-{ id: ‘2p’, letter: ‘p’, pre: ’Quiero que ‘, verb: ‘tener, vosotros’, post: ’ una nueva oportunidad en esta empresa.’ }
-]
-},
-{
-id: ‘ex3’, tab: ‘Ej. 3’, title: ‘Ejercicio 3’,
-instructions: ‘Lee cada situación y escribe un consejo. Empieza con “Te aconsejo que…” usando el presente de subjuntivo.’,
-type: ‘advice’,
-items: [
-{ id: ‘3a’, situation: ‘Todos los días llego tarde al trabajo. Mis jefes están enfadados.’ },
-{ id: ‘3b’, situation: ‘Todos los días fumo tres paquetes de tabaco. Tengo una gran adicción.’ },
-{ id: ‘3c’, situation: ‘Me gustan mucho las hamburguesas, por eso peso 150 kilos.’ },
-{ id: ‘3d’, situation: ‘Estoy tan estresada… no me concentro en mi trabajo, son muchas cosas.’ },
-{ id: ‘3e’, situation: ‘He discutido con mi novio. ¡Estoy hasta las narices!’ },
-{ id: ‘3f’, situation: ‘No tengo trabajo y no puedo pagar mi crédito.’ }
-]
-},
-{
-id: ‘ex4’, tab: ‘Ej. 4’, title: ‘Ejercicio 4’,
-instructions: ‘Marca la opción correcta del presente de subjuntivo.’,
-type: ‘multiple-choice’,
-items: [
-{ id: ‘4a’, before: ’Espero que ‘, options: [‘tienes’, ‘tengas’], after: ’ suerte en tu nuevo trabajo.’ },
-{ id: ‘4b’, before: ’Ojalá que ‘, options: [‘podamos’, ‘podemos’], after: ’ viajar este fin de semana a los Alpes suizos.’ },
-{ id: ‘4c’, before: ’Deseo que mi equipo de fútbol ‘, options: [‘gane’, ‘gana’], after: ’ el domingo contra el Dortmund.’ },
-{ id: ‘4d’, before: ’Espero que nos ‘, options: [‘vemos’, ‘veamos’], after: ’ pronto.’ },
-{ id: ‘4e’, before: ’Ojalá que me ‘, options: [‘inviten’, ‘invitan’], after: ’ a la fiesta de fin de curso.’ },
-{ id: ‘4f’, before: ’Espero que Mario ‘, options: [‘llegue’, ‘llega’], after: ’ pronto a la cita.’ },
-{ id: ‘4g’, before: ’Ojalá que ‘, options: [‘tenemos’, ‘tengamos’], after: ’ buen tiempo para el fin de semana.’ },
-{ id: ‘4h’, before: ’Espero que Alberto me ‘, options: [‘llama’, ‘llame’], after: ’ hoy para hablar de los planes de vacaciones.’ },
-{ id: ‘4i’, before: ’Quiero que tú ‘, options: [‘vas’, ‘vayas’], after: ’ al cine con tu hermano.’ },
-{ id: ‘4j’, before: ’Espero que nosotros ‘, options: [‘acabemos’, ‘acabamos’], after: ’ pronto el trabajo de literatura.’ },
-{ id: ‘4k’, before: ’Ojalá que ella me ‘, options: [‘dice’, ‘diga’], after: ’ toda la verdad sobre ese asunto.’ }
-]
-},
-{
-id: ‘ex5’, tab: ‘Ej. 5’, title: ‘Ejercicio 5’,
-instructions: ‘Relaciona los diálogos con las personas. Arrastra cada frase a la persona que probablemente la diría.’,
-type: ‘match’,
-bubbles: [
-{ id: ‘b1’, text: ‘No quiero que trabajes para esta empresa.’ },
-{ id: ‘b2’, text: ‘Quiero que estudies más y que tengas mejores notas.’ },
-{ id: ‘b3’, text: ‘Deseo que me toque la lotería esta noche.’ },
-{ id: ‘b4’, text: ‘Deseo que sea un niño.’ },
-{ id: ‘b5’, text: ‘¡No quiero que salgas con tus amigos hasta las 5 de la mañana!’ }
-],
-people: [
-{ id: ‘p1’, label: ‘Persona 1’, desc: ‘Mujer embarazada’ },
-{ id: ‘p2’, label: ‘Persona 2’, desc: ‘Señora mayor con un billete de lotería’ },
-{ id: ‘p3’, label: ‘Persona 3’, desc: ‘Padre hablando con su hijo pequeño’ },
-{ id: ‘p4’, label: ‘Persona 4’, desc: ‘Pareja discutiendo (mujer gritándole al hombre)’ },
-{ id: ‘p5’, label: ‘Persona 5’, desc: ‘Jefe regañando a un empleado’ }
-]
-},
-{
-id: ‘ex6’, tab: ‘Ej. 6’, title: ‘Ejercicio 6’,
-instructions: ‘Escribe el presente de subjuntivo en las siguientes frases.’,
-type: ‘fill-blank’,
-items: [
-{ id: ‘6_1’, letter: ‘1’, pre: ’Nosotros esperamos que ‘, verb: ‘gustar, tú’, post: ’ nuestro regalo.’ },
-{ id: ‘6_2’, letter: ‘2’, pre: ’Ella quiere que ‘, verb: ‘cenar, yo’, post: ’ en su apartamento.’ },
-{ id: ‘6_3’, letter: ‘3’, pre: ’Él desea que ‘, verb: ‘terminar, nosotros’, post: ’ el trabajo para el lunes.’ },
-{ id: ‘6_4’, letter: ‘4’, pre: ’Nosotros queremos que ‘, verb: ‘venir, vosotros’, post: ’ al cine.’ },
-{ id: ‘6_5’, letter: ‘5’, pre: ’Yo espero que ‘, verb: ‘tener, ella’, post: ’ un buen viaje de regreso.’ },
-{ id: ‘6_6’, letter: ‘6’, pre: ’Te aconsejo que ‘, verb: ‘visitar, tú’, post: ’ la ciudad de Bilbao.’ },
-{ id: ‘6_7’, letter: ‘7’, pre: ’Espero que el examen ‘, verb: ‘ser’, post: ’ fácil.’ },
-{ id: ‘6_8’, letter: ‘8’, pre: ’Tú quieres que Marta ‘, verb: ‘estudiar’, post: ’ en la universidad.’ },
-{ id: ‘6_9’, letter: ‘9’, pre: ’Yo quiero que ‘, verb: ‘ir, tú’, post: ’ a trabajar a la firma KMPG.’ },
-{ id: ‘6_10’, letter: ‘10’, pre: ’El médico me aconseja que yo no ‘, verb: ‘fumar’, post: ’ mucho.’ },
-{ id: ‘6_11’, letter: ‘11’, pre: ’Ellos desean que el gobierno ‘, verb: ‘aprobar’, post: ’ la ley de trabajo.’ },
-{ id: ‘6_12’, letter: ‘12’, pre: ’No quiero que ‘, verb: ‘salir, tú’, post: ’ con ese chico de la clase.’ },
-{ id: ‘6_13’, letter: ‘13’, pre: ’Nosotros queremos que nuestros hijos ‘, verb: ‘ser’, post: ’ felices.’ },
-{ id: ‘6_14’, letter: ‘14’, pre: ’¿Quieres que yo ‘, verb: ‘ir’, post: ’ al cine contigo?’ },
-{ id: ‘6_15’, letter: ‘15’, pre: ’Te aconsejo que ‘, verb: ‘estudiar, tú’, post: ’ más para el examen.’ }
-]
-},
-{
-id: ‘ex7’, tab: ‘Ej. 7’, title: ‘Ejercicio 7’,
-instructions: ‘Escribe deseos para estas personas en las tarjetas. Usa el presente de subjuntivo (Espero que…, Ojalá que…, Deseo que…).’,
-type: ‘cards’,
-items: [
-{ id: ‘7a’, context: ‘Alberto y Sonia se casan este año.’, greeting: ‘Queridos Alberto y Sonia:’, signoff: ‘Besos,’ },
-{ id: ‘7b’, context: ‘Matías está enfermo en el hospital.’, greeting: ‘Querido Matías:’, signoff: ‘Un saludo,’ },
-{ id: ‘7c’, context: ‘Julia y Pepe se van de viaje.’, greeting: ‘Queridos Julia y Pepe:’, signoff: ‘Un abrazo,’ },
-{ id: ‘7d’, context: ‘Luisa va a tener un bebé.’, greeting: ‘Querida Luisa:’, signoff: ‘Besos,’ }
-]
-},
-{
-id: ‘ex8’, tab: ‘Ej. 8’, title: ‘Ejercicio 8’,
-instructions: ‘Completa la tabla con el presente de subjuntivo. Las formas en verde ya están dadas en el original.’,
-type: ‘conjugation’,
-items: [
-{ id: ‘8_hablar’, verb: ‘HABLAR’, forms: [
-{ id: ‘8_hablar_yo’, pronoun: ‘yo’, given: null },
-{ id: ‘8_hablar_tu’, pronoun: ‘tú’, given: ‘hables’ },
-{ id: ‘8_hablar_el’, pronoun: ‘él/ella/usted’, given: null },
-{ id: ‘8_hablar_nos’, pronoun: ‘nosotros/-as’, given: null },
-{ id: ‘8_hablar_vos’, pronoun: ‘vosotros/-as’, given: null },
-{ id: ‘8_hablar_ellos’, pronoun: ‘ellos/-as/ustedes’, given: null }
-]},
-{ id: ‘8_comer’, verb: ‘COMER’, forms: [
-{ id: ‘8_comer_yo’, pronoun: ‘yo’, given: null },
-{ id: ‘8_comer_tu’, pronoun: ‘tú’, given: null },
-{ id: ‘8_comer_el’, pronoun: ‘él/ella/usted’, given: null },
-{ id: ‘8_comer_nos’, pronoun: ‘nosotros/-as’, given: ‘comamos’ },
-{ id: ‘8_comer_vos’, pronoun: ‘vosotros/-as’, given: null },
-{ id: ‘8_comer_ellos’, pronoun: ‘ellos/-as/ustedes’, given: null }
-]},
-{ id: ‘8_vivir’, verb: ‘VIVIR’, forms: [
-{ id: ‘8_vivir_yo’, pronoun: ‘yo’, given: null },
-{ id: ‘8_vivir_tu’, pronoun: ‘tú’, given: null },
-{ id: ‘8_vivir_el’, pronoun: ‘él/ella/usted’, given: null },
-{ id: ‘8_vivir_nos’, pronoun: ‘nosotros/-as’, given: null },
-{ id: ‘8_vivir_vos’, pronoun: ‘vosotros/-as’, given: null },
-{ id: ‘8_vivir_ellos’, pronoun: ‘ellos/-as/ustedes’, given: ‘vivan’ }
-]},
-{ id: ‘8_querer’, verb: ‘QUERER’, forms: [
-{ id: ‘8_querer_yo’, pronoun: ‘yo’, given: ‘quiera’ },
-{ id: ‘8_querer_tu’, pronoun: ‘tú’, given: null },
-{ id: ‘8_querer_el’, pronoun: ‘él/ella/usted’, given: null },
-{ id: ‘8_querer_nos’, pronoun: ‘nosotros/-as’, given: ‘queramos’ },
-{ id: ‘8_querer_vos’, pronoun: ‘vosotros/-as’, given: null },
-{ id: ‘8_querer_ellos’, pronoun: ‘ellos/-as/ustedes’, given: null }
-]},
-{ id: ‘8_tener’, verb: ‘TENER’, forms: [
-{ id: ‘8_tener_yo’, pronoun: ‘yo’, given: null },
-{ id: ‘8_tener_tu’, pronoun: ‘tú’, given: ‘tengas’ },
-{ id: ‘8_tener_el’, pronoun: ‘él/ella/usted’, given: null },
-{ id: ‘8_tener_nos’, pronoun: ‘nosotros/-as’, given: null },
-{ id: ‘8_tener_vos’, pronoun: ‘vosotros/-as’, given: null },
-{ id: ‘8_tener_ellos’, pronoun: ‘ellos/-as/ustedes’, given: null }
-]},
-{ id: ‘8_ser’, verb: ‘SER’, forms: [
-{ id: ‘8_ser_yo’, pronoun: ‘yo’, given: null },
-{ id: ‘8_ser_tu’, pronoun: ‘tú’, given: null },
-{ id: ‘8_ser_el’, pronoun: ‘él/ella/usted’, given: null },
-{ id: ‘8_ser_nos’, pronoun: ‘nosotros/-as’, given: ‘seamos’ },
-{ id: ‘8_ser_vos’, pronoun: ‘vosotros/-as’, given: null },
-{ id: ‘8_ser_ellos’, pronoun: ‘ellos/-as/ustedes’, given: null }
-]},
-{ id: ‘8_estar’, verb: ‘ESTAR’, forms: [
-{ id: ‘8_estar_yo’, pronoun: ‘yo’, given: ‘esté’ },
-{ id: ‘8_estar_tu’, pronoun: ‘tú’, given: null },
-{ id: ‘8_estar_el’, pronoun: ‘él/ella/usted’, given: null },
-{ id: ‘8_estar_nos’, pronoun: ‘nosotros/-as’, given: null },
-{ id: ‘8_estar_vos’, pronoun: ‘vosotros/-as’, given: null },
-{ id: ‘8_estar_ellos’, pronoun: ‘ellos/-as/ustedes’, given: null }
-]}
-]
+function normalizeText(str) {
+  // Normalize curly/smart quotes and dashes to straight equivalents
+  return String(str)
+    .replace(/[\u2018\u2019\u201A\u201B\u2032]/g, "'")  // curly singles
+    .replace(/[\u201C\u201D\u201E\u201F\u2033]/g, '"')  // curly doubles
+    .replace(/[\u2013\u2014\u2212]/g, '-')              // en-dash, em-dash, minus
+    .replace(/\u00A0/g, ' ')                             // non-breaking space
+    .replace(/\r\n/g, '\n')
+    .replace(/\r/g, '\n');
 }
-];
 
-function escapeHTML(str) { return String(str).replace(/[&<>”’]/g, c => ({’&’:’&’,’<’:’<’,’>’:’>’,’”’:’"’,”’”:’'’}[c])); }
-function escapeAttr(str) { return escapeHTML(str); }
+function parseHomework(raw) {
+  const text = normalizeText(raw);
+  const result = {
+    title: 'Ejercicios',
+    subtitle: '',
+    eyebrow: 'Tarea',
+    sections: [],
+    errors: []
+  };
+
+  const lines = text.split('\n');
+  let currentSection = null;
+  let currentTable = null; // for conjugation
+  let matchMode = null;    // 'bubbles' or 'people' for match sections
+  let instructionBuffer = [];
+
+  const finishInstructions = () => {
+    if (currentSection && instructionBuffer.length > 0) {
+      currentSection.instructions = instructionBuffer.join(' ').trim();
+      instructionBuffer = [];
+    }
+  };
+
+  for (let i = 0; i < lines.length; i++) {
+    const rawLine = lines[i];
+    const line = rawLine.trim();
+
+    // Skip empty lines (but they end instruction collection)
+    if (!line) {
+      finishInstructions();
+      continue;
+    }
+
+    // Header keys (TITLE:, SUBTITLE:, EYEBROW:)
+    const headerMatch = line.match(/^(TITLE|SUBTITLE|EYEBROW)\s*:\s*(.+)$/i);
+    if (headerMatch && !currentSection) {
+      result[headerMatch[1].toLowerCase()] = headerMatch[2].trim();
+      continue;
+    }
+
+    // Section delimiter: === EXn | type | label ===
+    const sectionMatch = line.match(/^=+\s*(.+?)\s*=+$/);
+    if (sectionMatch) {
+      finishInstructions();
+      const parts = sectionMatch[1].split('|').map(p => p.trim());
+      const [id, type, label] = parts;
+      if (!id || !type) {
+        result.errors.push(`Sección mal formada en línea ${i + 1}: falta id o tipo`);
+        continue;
+      }
+      currentSection = {
+        id: id.toLowerCase(),
+        tab: label || id,
+        title: label || id,
+        type: type.toLowerCase(),
+        instructions: '',
+        items: []
+      };
+      if (currentSection.type === 'match') {
+        currentSection.bubbles = [];
+        currentSection.people = [];
+      } else if (currentSection.type === 'conjugation') {
+        currentSection.tables = [];
+      }
+      result.sections.push(currentSection);
+      currentTable = null;
+      matchMode = null;
+      instructionBuffer = [];
+      continue;
+    }
+
+    // Everything below needs a section
+    if (!currentSection) continue;
+
+    // Match section: BUBBLES / PEOPLE headers
+    if (currentSection.type === 'match') {
+      if (/^BUBBLES\s*$/i.test(line)) { finishInstructions(); matchMode = 'bubbles'; continue; }
+      if (/^PEOPLE\s*$/i.test(line)) { finishInstructions(); matchMode = 'people'; continue; }
+      if (matchMode === 'bubbles') {
+        currentSection.bubbles.push({
+          id: 'b' + (currentSection.bubbles.length + 1),
+          text: line
+        });
+        continue;
+      }
+      if (matchMode === 'people') {
+        const parts = line.split('|').map(p => p.trim());
+        currentSection.people.push({
+          id: 'p' + (currentSection.people.length + 1),
+          label: parts[0] || ('Persona ' + (currentSection.people.length + 1)),
+          desc: parts[1] || parts[0] || ''
+        });
+        continue;
+      }
+      // Before BUBBLES/PEOPLE, treat as instructions
+      instructionBuffer.push(line);
+      continue;
+    }
+
+    // Conjugation section
+    if (currentSection.type === 'conjugation') {
+      // If line has no pipe, it's a verb header (or instructions)
+      if (!line.includes('|')) {
+        // Check if it looks like a verb (all caps-ish, no lowercase words)
+        const trimmed = line.replace(/[^\w\s]/g, '').trim();
+        const isVerbHeader = trimmed.length > 0 && trimmed === trimmed.toUpperCase() && !instructionBuffer.length && currentSection.tables.length > 0 || (currentSection.tables.length === 0 && instructionBuffer.length > 0 && /^[A-ZÁÉÍÓÚÑ]/.test(line));
+        // Simpler heuristic: if the next non-empty line contains '|', this is a verb header
+        let nextHasPipe = false;
+        for (let j = i + 1; j < lines.length; j++) {
+          const nextTrim = lines[j].trim();
+          if (!nextTrim) continue;
+          if (nextTrim.startsWith('===')) break;
+          nextHasPipe = nextTrim.includes('|');
+          break;
+        }
+        if (nextHasPipe) {
+          finishInstructions();
+          currentTable = {
+            id: currentSection.id + '_' + line.toLowerCase().replace(/[^a-z0-9]/g, ''),
+            verb: line,
+            forms: []
+          };
+          currentSection.tables.push(currentTable);
+          continue;
+        }
+        instructionBuffer.push(line);
+        continue;
+      }
+      // Line with pipe inside conjugation → form row
+      if (currentTable) {
+        const parts = line.split('|').map(p => p.trim());
+        const pronoun = parts[0] || '';
+        const given = parts[1] || null;
+        currentTable.forms.push({
+          id: currentTable.id + '_' + currentTable.forms.length,
+          pronoun,
+          given: given || null
+        });
+        continue;
+      }
+      instructionBuffer.push(line);
+      continue;
+    }
+
+    // fill-blank, multiple-choice, advice, cards: parse a line with pipes
+    if (!line.includes('|')) {
+      // Part of instructions
+      instructionBuffer.push(line);
+      continue;
+    }
+
+    finishInstructions();
+    const parts = line.split('|').map(p => p.trim());
+    const itemIndex = currentSection.items.length;
+    const itemId = currentSection.id + '_' + itemIndex;
+    const letter = parts[0] || String.fromCharCode(97 + itemIndex);
+
+    if (currentSection.type === 'fill-blank') {
+      // a | verb, pronoun | Sentence with ___ in it.
+      const verb = parts[1] || '';
+      const sentence = parts.slice(2).join(' | ') || '';
+      const blankIdx = sentence.indexOf('___');
+      let pre = sentence, post = '';
+      if (blankIdx >= 0) {
+        pre = sentence.slice(0, blankIdx);
+        post = sentence.slice(blankIdx + 3);
+      }
+      currentSection.items.push({ id: itemId, letter, verb, pre, post });
+    } else if (currentSection.type === 'multiple-choice') {
+      // a | opt1 / opt2 | Sentence with ___ in it.
+      const optsRaw = parts[1] || '';
+      const options = optsRaw.split(/\s*[\/,]\s*/).filter(Boolean);
+      const sentence = parts.slice(2).join(' | ') || '';
+      const blankIdx = sentence.indexOf('___');
+      let before = sentence, after = '';
+      if (blankIdx >= 0) {
+        before = sentence.slice(0, blankIdx);
+        after = sentence.slice(blankIdx + 3);
+      }
+      currentSection.items.push({ id: itemId, letter, before, after, options });
+    } else if (currentSection.type === 'advice') {
+      // a | Situation text.
+      const situation = parts.slice(1).join(' | ') || '';
+      currentSection.items.push({ id: itemId, letter, situation });
+    } else if (currentSection.type === 'cards') {
+      // a | Context | Greeting | Signoff
+      currentSection.items.push({
+        id: itemId,
+        letter,
+        context: parts[1] || '',
+        greeting: parts[2] || '',
+        signoff: parts[3] || ''
+      });
+    }
+  }
+
+  finishInstructions();
+  return result;
+}
+
+// ============================================================
+// APP STATE + STORAGE
+// ============================================================
+let PARSED = null;
+let STORAGE_KEY = 'homework-v1';
 
 function loadAnswers() {
-try { const raw = localStorage.getItem(STORAGE_KEY); return raw ? JSON.parse(raw) : {}; }
-catch { return {}; }
-}
-
-// For Ex 5 matches, we store under special key _matches = { p1: ‘b3’, p2: ‘b4’, … }
-function loadMatches() {
-const answers = loadAnswers();
-return answers._matches || {};
+  try { const raw = localStorage.getItem(STORAGE_KEY); return raw ? JSON.parse(raw) : {}; }
+  catch { return {}; }
 }
 
 function getAllAnswers() {
-const answers = {};
-document.querySelectorAll(‘input[data-answer-id], textarea[data-answer-id]’).forEach(el => {
-answers[el.dataset.answerId] = el.value.trim();
-});
-document.querySelectorAll(’.mc-option.selected’).forEach(el => {
-answers[el.dataset.answerId] = el.dataset.value;
-});
-// Collect matches
-const matches = {};
-document.querySelectorAll(’.person-card[data-person-id]’).forEach(card => {
-const bubble = card.querySelector(’.bubble[data-bubble-id]’);
-if (bubble) matches[card.dataset.personId] = bubble.dataset.bubbleId;
-});
-if (Object.keys(matches).length > 0) answers._matches = matches;
-return answers;
+  const answers = {};
+  document.querySelectorAll('input[data-answer-id], textarea[data-answer-id]').forEach(el => {
+    answers[el.dataset.answerId] = el.value.trim();
+  });
+  document.querySelectorAll('.mc-option.selected').forEach(el => {
+    answers[el.dataset.answerId] = el.dataset.value;
+  });
+  const matches = {};
+  document.querySelectorAll('.person-card[data-person-id]').forEach(card => {
+    const bubble = card.querySelector('.bubble[data-bubble-id]');
+    if (bubble) matches[card.dataset.personId] = bubble.dataset.bubbleId;
+  });
+  if (Object.keys(matches).length > 0) answers._matches = matches;
+  return answers;
 }
 
 function saveAnswers() {
-try { localStorage.setItem(STORAGE_KEY, JSON.stringify(getAllAnswers())); flashSaved(); } catch (e) {}
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(getAllAnswers())); flashSaved(); } catch (e) {}
 }
 
 function flashSaved() {
-const el = document.getElementById(‘saved’);
-el.classList.add(‘show’);
-clearTimeout(flashSaved._t);
-flashSaved._t = setTimeout(() => el.classList.remove(‘show’), 900);
+  const el = document.getElementById('saved');
+  el.classList.add('show');
+  clearTimeout(flashSaved._t);
+  flashSaved._t = setTimeout(() => el.classList.remove('show'), 900);
 }
 
+function escapeHTML(str) { return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function escapeAttr(str) { return escapeHTML(str); }
+
+// ============================================================
+// RENDER
+// ============================================================
 function renderAll() {
-const saved = loadAnswers();
-const tabsEl = document.getElementById(‘tabs’);
-const sectionsEl = document.getElementById(‘sections’);
+  const saved = loadAnswers();
+  const tabsEl = document.getElementById('tabs');
+  const sectionsEl = document.getElementById('sections');
 
-tabsEl.innerHTML = SECTIONS.map((s, i) =>
-`<button class="tab ${i === 0 ? 'active' : ''}" data-tab="${s.id}">${escapeHTML(s.tab)}<span class="tab-done"></span></button>`
-).join(’’);
+  document.getElementById('title').textContent = PARSED.title;
+  document.getElementById('subtitle').textContent = PARSED.subtitle || '';
+  document.getElementById('eyebrow').textContent = PARSED.eyebrow || 'Ejercicios';
+  document.title = PARSED.title;
 
-sectionsEl.innerHTML = SECTIONS.map((s, i) => {
-let body = ‘’;
-if (s.type === ‘fill-blank’) body = renderFillBlank(s, saved);
-else if (s.type === ‘multiple-choice’) body = renderMC(s, saved);
-else if (s.type === ‘advice’) body = renderAdvice(s, saved);
-else if (s.type === ‘cards’) body = renderCards(s, saved);
-else if (s.type === ‘conjugation’) body = renderConjugation(s, saved);
-else if (s.type === ‘match’) body = renderMatch(s, saved);
+  if (PARSED.sections.length === 0) {
+    sectionsEl.innerHTML = `<div class="status-box error"><strong>No se encontraron ejercicios.</strong><br>Revisa el archivo homework.txt.${PARSED.errors.length ? '<br><br>' + PARSED.errors.map(escapeHTML).join('<br>') : ''}</div>`;
+    return;
+  }
 
-```
-return `
-  <section class="section ${i === 0 ? 'active' : ''}" data-section="${s.id}">
-    <h2 class="section-title">${escapeHTML(s.title)}</h2>
-    <div class="section-instructions">${escapeHTML(s.instructions)}</div>
-    ${body}
-  </section>
-`;
-```
+  document.getElementById('progress-wrap').style.display = '';
+  document.getElementById('actions').style.display = '';
+  document.getElementById('ornament').style.display = '';
 
-}).join(’’);
+  tabsEl.innerHTML = PARSED.sections.map((s, i) =>
+    `<button class="tab ${i === 0 ? 'active' : ''}" data-tab="${escapeAttr(s.id)}">${escapeHTML(s.tab)}<span class="tab-done"></span></button>`
+  ).join('');
 
-attachListeners();
-initDragAndDrop();
-updateAllProgress();
+  sectionsEl.innerHTML = PARSED.sections.map((s, i) => {
+    let body = '';
+    if (s.type === 'fill-blank') body = renderFillBlank(s, saved);
+    else if (s.type === 'multiple-choice') body = renderMC(s, saved);
+    else if (s.type === 'advice') body = renderAdvice(s, saved);
+    else if (s.type === 'cards') body = renderCards(s, saved);
+    else if (s.type === 'conjugation') body = renderConjugation(s, saved);
+    else if (s.type === 'match') body = renderMatch(s, saved);
+    else body = `<div class="status-box error">Tipo de ejercicio desconocido: <strong>${escapeHTML(s.type)}</strong></div>`;
+
+    return `
+      <section class="section ${i === 0 ? 'active' : ''}" data-section="${escapeAttr(s.id)}">
+        <h2 class="section-title">${escapeHTML(s.title)}</h2>
+        ${s.instructions ? `<div class="section-instructions">${escapeHTML(s.instructions)}</div>` : ''}
+        ${body}
+      </section>
+    `;
+  }).join('');
+
+  attachListeners();
+  initDragAndDrop();
+  updateAllProgress();
 }
 
 function renderFillBlank(s, saved) {
-return s.items.map(ex => {
-const val = saved[ex.id] || ‘’;
-return `<div class="exercise" data-exercise="${ex.id}"> <div class="letter">${escapeHTML(ex.letter)}</div> <div class="sentence">${escapeHTML(ex.pre)}<input class="blank" type="text" data-answer-id="${ex.id}" placeholder="${escapeAttr(ex.verb)}" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" value="${escapeAttr(val)}"> <span class="hint">${escapeHTML(ex.verb)}</span>${escapeHTML(ex.post)}</div> </div>`;
-}).join(’’);
+  return s.items.map(ex => {
+    const val = saved[ex.id] || '';
+    return `
+      <div class="exercise" data-exercise="${escapeAttr(ex.id)}">
+        <div class="letter">${escapeHTML(ex.letter)}</div>
+        <div class="sentence">${escapeHTML(ex.pre)}<input class="blank" type="text" data-answer-id="${escapeAttr(ex.id)}" placeholder="${escapeAttr(ex.verb)}" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" value="${escapeAttr(val)}"> <span class="hint">${escapeHTML(ex.verb)}</span>${escapeHTML(ex.post)}</div>
+      </div>
+    `;
+  }).join('');
 }
 
 function renderMC(s, saved) {
-return s.items.map(ex => {
-const selected = saved[ex.id] || ‘’;
-const buttons = ex.options.map(opt =>
-`<button class="mc-option ${selected === opt ? 'selected' : ''}" data-answer-id="${ex.id}" data-value="${escapeAttr(opt)}">${escapeHTML(opt)}</button>`
-).join(’’);
-const letter = ex.id.replace(/^4/, ‘’);
-return `<div class="exercise" data-exercise="${ex.id}"> <div class="letter">${escapeHTML(letter)}</div> <div class="sentence"> <div class="mc-question">${escapeHTML(ex.before)}<strong>___</strong>${escapeHTML(ex.after)}</div> <div class="mc-options">${buttons}</div> </div> </div>`;
-}).join(’’);
+  return s.items.map(ex => {
+    const selected = saved[ex.id] || '';
+    const buttons = ex.options.map(opt =>
+      `<button class="mc-option ${selected === opt ? 'selected' : ''}" data-answer-id="${escapeAttr(ex.id)}" data-value="${escapeAttr(opt)}">${escapeHTML(opt)}</button>`
+    ).join('');
+    return `
+      <div class="exercise" data-exercise="${escapeAttr(ex.id)}">
+        <div class="letter">${escapeHTML(ex.letter)}</div>
+        <div class="sentence">
+          <div class="mc-question">${escapeHTML(ex.before)}<strong>___</strong>${escapeHTML(ex.after)}</div>
+          <div class="mc-options">${buttons}</div>
+        </div>
+      </div>
+    `;
+  }).join('');
 }
 
 function renderAdvice(s, saved) {
-return s.items.map((ex, idx) => {
-const val = saved[ex.id] || ‘’;
-const letter = String.fromCharCode(97 + idx);
-return `<div class="exercise" data-exercise="${ex.id}"> <div class="letter">${letter}</div> <div class="sentence" style="width:100%;"> <div class="prompt-block"> <div class="situation-label">Situación</div> ${escapeHTML(ex.situation)} </div> <textarea class="free-text" data-answer-id="${ex.id}" placeholder="Te aconsejo que...">${escapeHTML(val)}</textarea> </div> </div>`;
-}).join(’’);
+  return s.items.map(ex => {
+    const val = saved[ex.id] || '';
+    return `
+      <div class="exercise" data-exercise="${escapeAttr(ex.id)}">
+        <div class="letter">${escapeHTML(ex.letter)}</div>
+        <div class="sentence" style="width:100%;">
+          <div class="prompt-block">
+            <div class="situation-label">Situación</div>
+            ${escapeHTML(ex.situation)}
+          </div>
+          <textarea class="free-text" data-answer-id="${escapeAttr(ex.id)}" placeholder="Te aconsejo que...">${escapeHTML(val)}</textarea>
+        </div>
+      </div>
+    `;
+  }).join('');
 }
 
 function renderCards(s, saved) {
-return s.items.map((ex, idx) => {
-const val = saved[ex.id] || ‘’;
-const letter = String.fromCharCode(97 + idx);
-return `<div class="exercise" data-exercise="${ex.id}"> <div class="letter">${letter}</div> <div class="sentence" style="width:100%;"> <div class="prompt-block"> <div class="situation-label">Contexto</div> ${escapeHTML(ex.context)} </div> <div class="card-greeting">${escapeHTML(ex.greeting)}</div> <textarea class="free-text" data-answer-id="${ex.id}" placeholder="Espero que... / Ojalá que... / Deseo que...">${escapeHTML(val)}</textarea> <div class="card-signoff">${escapeHTML(ex.signoff)}</div> </div> </div>`;
-}).join(’’);
+  return s.items.map(ex => {
+    const val = saved[ex.id] || '';
+    return `
+      <div class="exercise" data-exercise="${escapeAttr(ex.id)}">
+        <div class="letter">${escapeHTML(ex.letter)}</div>
+        <div class="sentence" style="width:100%;">
+          <div class="prompt-block">
+            <div class="situation-label">Contexto</div>
+            ${escapeHTML(ex.context)}
+          </div>
+          ${ex.greeting ? `<div class="card-greeting">${escapeHTML(ex.greeting)}</div>` : ''}
+          <textarea class="free-text" data-answer-id="${escapeAttr(ex.id)}" placeholder="Espero que... / Ojalá que... / Deseo que...">${escapeHTML(val)}</textarea>
+          ${ex.signoff ? `<div class="card-signoff">${escapeHTML(ex.signoff)}</div>` : ''}
+        </div>
+      </div>
+    `;
+  }).join('');
 }
 
 function renderConjugation(s, saved) {
-return s.items.map(table => {
-const rows = table.forms.map(f => {
-const val = saved[f.id] || ‘’;
-if (f.given) {
-return `<div class="conj-row"> <div class="conj-pronoun">${escapeHTML(f.pronoun)}</div> <input type="text" class="conj-input given" value="${escapeAttr(f.given)}" readonly> </div>`;
-}
-return `<div class="conj-row"> <div class="conj-pronoun">${escapeHTML(f.pronoun)}</div> <input type="text" class="conj-input" data-answer-id="${f.id}" value="${escapeAttr(val)}" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false"> </div>`;
-}).join(’’);
-return `<div class="conj-table"> <div class="conj-verb">${escapeHTML(table.verb)}</div> ${rows} </div>`;
-}).join(’’);
+  return (s.tables || []).map(table => {
+    const rows = table.forms.map(f => {
+      const val = saved[f.id] || '';
+      if (f.given) {
+        return `
+          <div class="conj-row">
+            <div class="conj-pronoun">${escapeHTML(f.pronoun)}</div>
+            <input type="text" class="conj-input given" value="${escapeAttr(f.given)}" readonly>
+          </div>
+        `;
+      }
+      return `
+        <div class="conj-row">
+          <div class="conj-pronoun">${escapeHTML(f.pronoun)}</div>
+          <input type="text" class="conj-input" data-answer-id="${escapeAttr(f.id)}" value="${escapeAttr(val)}" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false">
+        </div>
+      `;
+    }).join('');
+    return `
+      <div class="conj-table">
+        <div class="conj-verb">${escapeHTML(table.verb)}</div>
+        ${rows}
+      </div>
+    `;
+  }).join('');
 }
 
 function renderMatch(s, saved) {
-const matches = (saved._matches) || {};
-// bubbles assigned = values in matches; build set
-const assignedBubbleIds = new Set(Object.values(matches));
+  const matches = (saved._matches) || {};
+  const assignedBubbleIds = new Set(Object.values(matches));
 
-const poolBubbles = s.bubbles
-.filter(b => !assignedBubbleIds.has(b.id))
-.map(b => `<div class="bubble" data-bubble-id="${b.id}">${escapeHTML(b.text)}</div>`)
-.join(’’);
+  const poolBubbles = (s.bubbles || [])
+    .filter(b => !assignedBubbleIds.has(b.id))
+    .map(b => `<div class="bubble" data-bubble-id="${escapeAttr(b.id)}">${escapeHTML(b.text)}</div>`)
+    .join('');
 
-const people = s.people.map(p => {
-const assignedBubbleId = matches[p.id];
-const assignedBubble = assignedBubbleId ? s.bubbles.find(b => b.id === assignedBubbleId) : null;
-const filledCls = assignedBubble ? ’ filled’ : ‘’;
-const bubbleHTML = assignedBubble
-? `<div class="bubble" data-bubble-id="${assignedBubble.id}">${escapeHTML(assignedBubble.text)}</div><button class="clear-match" data-clear-person="${p.id}">Quitar</button>`
-: ‘’;
-return `<div class="person-card${filledCls}" data-person-id="${p.id}"> <div class="person-label">${escapeHTML(p.label)}</div> <div class="person-desc">${escapeHTML(p.desc)}</div> ${bubbleHTML} </div>`;
-}).join(’’);
+  const people = (s.people || []).map(p => {
+    const assignedBubbleId = matches[p.id];
+    const assignedBubble = assignedBubbleId ? s.bubbles.find(b => b.id === assignedBubbleId) : null;
+    const filledCls = assignedBubble ? ' filled' : '';
+    const bubbleHTML = assignedBubble
+      ? `<div class="bubble" data-bubble-id="${escapeAttr(assignedBubble.id)}">${escapeHTML(assignedBubble.text)}</div><button class="clear-match" data-clear-person="${escapeAttr(p.id)}">Quitar</button>`
+      : '';
+    return `
+      <div class="person-card${filledCls}" data-person-id="${escapeAttr(p.id)}">
+        <div class="person-label">${escapeHTML(p.label)}</div>
+        <div class="person-desc">${escapeHTML(p.desc)}</div>
+        ${bubbleHTML}
+      </div>
+    `;
+  }).join('');
 
-return `<div class="match-hint">Mantén presionada una frase y arrástrala a la persona correcta. Para cambiar, usa "Quitar" y vuelve a arrastrar.</div> <div class="match-section-header">Frases (arrastra)</div> <div class="bubbles-pool${poolBubbles ? '' : ' empty'}" id="bubbles-pool">${poolBubbles}</div> <div class="match-section-header">Personas (suelta aquí)</div> <div class="person-grid">${people}</div>`;
+  return `
+    <div class="match-hint">Mantén presionada una frase y arrástrala a la persona correcta. Para cambiar, usa "Quitar" y vuelve a arrastrar.</div>
+    <div class="match-section-header">Frases (arrastra)</div>
+    <div class="bubbles-pool${poolBubbles ? '' : ' empty'}">${poolBubbles}</div>
+    <div class="match-section-header">Personas (suelta aquí)</div>
+    <div class="person-grid">${people}</div>
+  `;
 }
 
+// ============================================================
+// LISTENERS + STATE
+// ============================================================
 let saveTimer = null;
 
 function attachListeners() {
-document.querySelectorAll(‘input[data-answer-id], textarea[data-answer-id]’).forEach(el => {
-el.addEventListener(‘input’, () => {
-clearTimeout(saveTimer);
-saveTimer = setTimeout(saveAnswers, 400);
-updateAllProgress();
-});
-el.addEventListener(‘blur’, saveAnswers);
-});
+  document.querySelectorAll('input[data-answer-id], textarea[data-answer-id]').forEach(el => {
+    el.addEventListener('input', () => {
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(saveAnswers, 400);
+      updateAllProgress();
+    });
+    el.addEventListener('blur', saveAnswers);
+  });
 
-document.querySelectorAll(’.mc-option’).forEach(btn => {
-btn.addEventListener(‘click’, () => {
-const id = btn.dataset.answerId;
-document.querySelectorAll(`.mc-option[data-answer-id="${id}"]`).forEach(b => b.classList.remove(‘selected’));
-btn.classList.add(‘selected’);
-saveAnswers();
-updateAllProgress();
-});
-});
+  document.querySelectorAll('.mc-option').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.answerId;
+      document.querySelectorAll(`.mc-option[data-answer-id="${id}"]`).forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      saveAnswers();
+      updateAllProgress();
+    });
+  });
 
-document.querySelectorAll(’.tab’).forEach(tab => {
-tab.addEventListener(‘click’, () => {
-const id = tab.dataset.tab;
-document.querySelectorAll(’.tab’).forEach(t => t.classList.remove(‘active’));
-document.querySelectorAll(’.section’).forEach(s => s.classList.remove(‘active’));
-tab.classList.add(‘active’);
-document.querySelector(`.section[data-section="${id}"]`).classList.add(‘active’);
-window.scrollTo({ top: 0, behavior: ‘smooth’ });
-});
-});
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const id = tab.dataset.tab;
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      tab.classList.add('active');
+      const target = document.querySelector(`.section[data-section="${id}"]`);
+      if (target) target.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
 
-// Clear-match buttons
-document.querySelectorAll(’.clear-match’).forEach(btn => {
-btn.addEventListener(‘click’, (e) => {
-e.stopPropagation();
-unmatchPerson(btn.dataset.clearPerson);
-});
-});
+  document.querySelectorAll('.clear-match').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      unmatchPerson(btn.dataset.clearPerson);
+    });
+  });
 }
 
 // ============================================================
-// DRAG AND DROP (pointer events — works on touch + mouse)
+// DRAG AND DROP
 // ============================================================
-let drag = null; // { bubble, ghost, startX, startY, offsetX, offsetY }
+let drag = null;
 
 function initDragAndDrop() {
-document.querySelectorAll(’.bubble[data-bubble-id]’).forEach(bubble => {
-bubble.addEventListener(‘pointerdown’, onDragStart);
-});
+  document.querySelectorAll('.bubble[data-bubble-id]').forEach(bubble => {
+    bubble.addEventListener('pointerdown', onDragStart);
+  });
 }
 
 function onDragStart(e) {
-if (e.target.classList.contains(‘clear-match’)) return;
-const bubble = e.currentTarget;
-e.preventDefault();
-bubble.setPointerCapture(e.pointerId);
+  if (e.target.classList.contains('clear-match')) return;
+  const bubble = e.currentTarget;
+  e.preventDefault();
+  bubble.setPointerCapture(e.pointerId);
 
-const rect = bubble.getBoundingClientRect();
-const ghost = bubble.cloneNode(true);
-ghost.classList.add(‘bubble-ghost’);
-ghost.style.left = rect.left + ‘px’;
-ghost.style.top = rect.top + ‘px’;
-ghost.style.width = rect.width + ‘px’;
-document.body.appendChild(ghost);
+  const rect = bubble.getBoundingClientRect();
+  const ghost = bubble.cloneNode(true);
+  ghost.classList.add('bubble-ghost');
+  ghost.style.left = rect.left + 'px';
+  ghost.style.top = rect.top + 'px';
+  ghost.style.width = rect.width + 'px';
+  document.body.appendChild(ghost);
 
-bubble.classList.add(‘dragging’);
+  bubble.classList.add('dragging');
+  drag = {
+    bubble, ghost,
+    offsetX: e.clientX - rect.left,
+    offsetY: e.clientY - rect.top,
+    pointerId: e.pointerId
+  };
 
-drag = {
-bubble,
-ghost,
-offsetX: e.clientX - rect.left,
-offsetY: e.clientY - rect.top,
-pointerId: e.pointerId
-};
-
-bubble.addEventListener(‘pointermove’, onDragMove);
-bubble.addEventListener(‘pointerup’, onDragEnd);
-bubble.addEventListener(‘pointercancel’, onDragEnd);
+  bubble.addEventListener('pointermove', onDragMove);
+  bubble.addEventListener('pointerup', onDragEnd);
+  bubble.addEventListener('pointercancel', onDragEnd);
 }
 
 function onDragMove(e) {
-if (!drag) return;
-e.preventDefault();
-drag.ghost.style.left = (e.clientX - drag.offsetX) + ‘px’;
-drag.ghost.style.top = (e.clientY - drag.offsetY) + ‘px’;
-
-// Find drop target under pointer
-drag.ghost.style.display = ‘none’;
-const el = document.elementFromPoint(e.clientX, e.clientY);
-drag.ghost.style.display = ‘’;
-
-document.querySelectorAll(’.person-card.drop-target’).forEach(c => c.classList.remove(‘drop-target’));
-const card = el ? el.closest(’.person-card[data-person-id]’) : null;
-if (card) card.classList.add(‘drop-target’);
+  if (!drag) return;
+  e.preventDefault();
+  drag.ghost.style.left = (e.clientX - drag.offsetX) + 'px';
+  drag.ghost.style.top = (e.clientY - drag.offsetY) + 'px';
+  drag.ghost.style.display = 'none';
+  const el = document.elementFromPoint(e.clientX, e.clientY);
+  drag.ghost.style.display = '';
+  document.querySelectorAll('.person-card.drop-target').forEach(c => c.classList.remove('drop-target'));
+  const card = el ? el.closest('.person-card[data-person-id]') : null;
+  if (card) card.classList.add('drop-target');
 }
 
 function onDragEnd(e) {
-if (!drag) return;
-drag.ghost.style.display = ‘none’;
-const el = document.elementFromPoint(e.clientX, e.clientY);
-drag.ghost.style.display = ‘’;
+  if (!drag) return;
+  drag.ghost.style.display = 'none';
+  const el = document.elementFromPoint(e.clientX, e.clientY);
+  drag.ghost.style.display = '';
+  const targetCard = el ? el.closest('.person-card[data-person-id]') : null;
+  const bubbleId = drag.bubble.dataset.bubbleId;
 
-const targetCard = el ? el.closest(’.person-card[data-person-id]’) : null;
-const bubbleId = drag.bubble.dataset.bubbleId;
+  if (targetCard) assignBubbleToPerson(bubbleId, targetCard.dataset.personId);
 
-if (targetCard) {
-assignBubbleToPerson(bubbleId, targetCard.dataset.personId);
-}
-
-document.querySelectorAll(’.person-card.drop-target’).forEach(c => c.classList.remove(‘drop-target’));
-drag.bubble.classList.remove(‘dragging’);
-drag.ghost.remove();
-drag.bubble.removeEventListener(‘pointermove’, onDragMove);
-drag.bubble.removeEventListener(‘pointerup’, onDragEnd);
-drag.bubble.removeEventListener(‘pointercancel’, onDragEnd);
-drag = null;
+  document.querySelectorAll('.person-card.drop-target').forEach(c => c.classList.remove('drop-target'));
+  drag.bubble.classList.remove('dragging');
+  drag.ghost.remove();
+  drag.bubble.removeEventListener('pointermove', onDragMove);
+  drag.bubble.removeEventListener('pointerup', onDragEnd);
+  drag.bubble.removeEventListener('pointercancel', onDragEnd);
+  drag = null;
 }
 
 function assignBubbleToPerson(bubbleId, personId) {
-// Get current state
-const section = SECTIONS.find(s => s.type === ‘match’);
-if (!section) return;
-const matches = {};
-document.querySelectorAll(’.person-card[data-person-id]’).forEach(card => {
-const b = card.querySelector(’.bubble[data-bubble-id]’);
-if (b) matches[card.dataset.personId] = b.dataset.bubbleId;
-});
-
-// Remove bubble wherever it currently is (could be pool or another person)
-// Find who (if anyone) currently has this bubbleId
-const currentOwner = Object.keys(matches).find(pid => matches[pid] === bubbleId);
-if (currentOwner) delete matches[currentOwner];
-
-// If target person already has a bubble, that bubble goes back to pool (handled by re-render)
-matches[personId] = bubbleId;
-
-// Re-render the match section only
-rerenderMatchSection(section, matches);
-saveAnswers();
-updateAllProgress();
+  const section = PARSED.sections.find(s => s.type === 'match');
+  if (!section) return;
+  const matches = {};
+  document.querySelectorAll('.person-card[data-person-id]').forEach(card => {
+    const b = card.querySelector('.bubble[data-bubble-id]');
+    if (b) matches[card.dataset.personId] = b.dataset.bubbleId;
+  });
+  const currentOwner = Object.keys(matches).find(pid => matches[pid] === bubbleId);
+  if (currentOwner) delete matches[currentOwner];
+  matches[personId] = bubbleId;
+  rerenderMatchSection(section, matches);
+  saveAnswers();
+  updateAllProgress();
 }
 
 function unmatchPerson(personId) {
-const section = SECTIONS.find(s => s.type === ‘match’);
-if (!section) return;
-const matches = {};
-document.querySelectorAll(’.person-card[data-person-id]’).forEach(card => {
-const b = card.querySelector(’.bubble[data-bubble-id]’);
-if (b) matches[card.dataset.personId] = b.dataset.bubbleId;
-});
-delete matches[personId];
-rerenderMatchSection(section, matches);
-saveAnswers();
-updateAllProgress();
+  const section = PARSED.sections.find(s => s.type === 'match');
+  if (!section) return;
+  const matches = {};
+  document.querySelectorAll('.person-card[data-person-id]').forEach(card => {
+    const b = card.querySelector('.bubble[data-bubble-id]');
+    if (b) matches[card.dataset.personId] = b.dataset.bubbleId;
+  });
+  delete matches[personId];
+  rerenderMatchSection(section, matches);
+  saveAnswers();
+  updateAllProgress();
 }
 
 function rerenderMatchSection(section, matches) {
-const sectionEl = document.querySelector(`.section[data-section="${section.id}"]`);
-if (!sectionEl) return;
-// Build a fake saved object with these matches for renderMatch
-const fakeSaved = { _matches: matches };
-const body = renderMatch(section, fakeSaved);
-const title = `<h2 class="section-title">${escapeHTML(section.title)}</h2><div class="section-instructions">${escapeHTML(section.instructions)}</div>`;
-sectionEl.innerHTML = title + body;
-// Re-wire listeners for this section
-sectionEl.querySelectorAll(’.bubble[data-bubble-id]’).forEach(bubble => {
-bubble.addEventListener(‘pointerdown’, onDragStart);
-});
-sectionEl.querySelectorAll(’.clear-match’).forEach(btn => {
-btn.addEventListener(‘click’, (e) => {
-e.stopPropagation();
-unmatchPerson(btn.dataset.clearPerson);
-});
-});
+  const sectionEl = document.querySelector(`.section[data-section="${section.id}"]`);
+  if (!sectionEl) return;
+  const fakeSaved = { _matches: matches };
+  const body = renderMatch(section, fakeSaved);
+  const titleHTML = `<h2 class="section-title">${escapeHTML(section.title)}</h2>${section.instructions ? `<div class="section-instructions">${escapeHTML(section.instructions)}</div>` : ''}`;
+  sectionEl.innerHTML = titleHTML + body;
+  sectionEl.querySelectorAll('.bubble[data-bubble-id]').forEach(bubble => {
+    bubble.addEventListener('pointerdown', onDragStart);
+  });
+  sectionEl.querySelectorAll('.clear-match').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      unmatchPerson(btn.dataset.clearPerson);
+    });
+  });
 }
 
+// ============================================================
+// PROGRESS
+// ============================================================
 function sectionItemIds(section) {
-const ids = [];
-if (section.type === ‘conjugation’) {
-section.items.forEach(item => item.forms.forEach(f => { if (!f.given) ids.push(f.id); }));
-} else if (section.type === ‘match’) {
-section.people.forEach(p => ids.push(‘match_’ + p.id));
-} else {
-section.items.forEach(item => ids.push(item.id));
-}
-return ids;
+  const ids = [];
+  if (section.type === 'conjugation') {
+    (section.tables || []).forEach(t => t.forms.forEach(f => { if (!f.given) ids.push(f.id); }));
+  } else if (section.type === 'match') {
+    (section.people || []).forEach(p => ids.push('match_' + p.id));
+  } else {
+    (section.items || []).forEach(item => ids.push(item.id));
+  }
+  return ids;
 }
 
 function isAnswered(id) {
-if (id.startsWith(‘match_’)) {
-const personId = id.replace(‘match_’, ‘’);
-const card = document.querySelector(`.person-card[data-person-id="${personId}"]`);
-if (!card) return false;
-return !!card.querySelector(’.bubble[data-bubble-id]’);
-}
-const input = document.querySelector(`input[data-answer-id="${id}"], textarea[data-answer-id="${id}"]`);
-if (input) return input.value.trim().length > 0;
-const selected = document.querySelector(`.mc-option[data-answer-id="${id}"].selected`);
-return !!selected;
+  if (id.startsWith('match_')) {
+    const personId = id.replace('match_', '');
+    const card = document.querySelector(`.person-card[data-person-id="${personId}"]`);
+    if (!card) return false;
+    return !!card.querySelector('.bubble[data-bubble-id]');
+  }
+  const input = document.querySelector(`input[data-answer-id="${id}"], textarea[data-answer-id="${id}"]`);
+  if (input) return input.value.trim().length > 0;
+  const selected = document.querySelector(`.mc-option[data-answer-id="${id}"].selected`);
+  return !!selected;
 }
 
 function updateAllProgress() {
-let total = 0, filled = 0;
-SECTIONS.forEach(section => {
-const ids = sectionItemIds(section);
-const sectionFilled = ids.filter(isAnswered).length;
-total += ids.length;
-filled += sectionFilled;
-
-```
-const tab = document.querySelector(`.tab[data-tab="${section.id}"]`);
-if (tab) tab.classList.toggle('complete', sectionFilled === ids.length && ids.length > 0);
-
-if (section.type !== 'conjugation' && section.type !== 'match') {
-  section.items.forEach(item => {
-    const el = document.querySelector(`[data-exercise="${item.id}"]`);
-    if (el) el.classList.toggle('complete', isAnswered(item.id));
+  let total = 0, filled = 0;
+  PARSED.sections.forEach(section => {
+    const ids = sectionItemIds(section);
+    const sectionFilled = ids.filter(isAnswered).length;
+    total += ids.length;
+    filled += sectionFilled;
+    const tab = document.querySelector(`.tab[data-tab="${section.id}"]`);
+    if (tab) tab.classList.toggle('complete', sectionFilled === ids.length && ids.length > 0);
+    if (section.type !== 'conjugation' && section.type !== 'match') {
+      (section.items || []).forEach(item => {
+        const el = document.querySelector(`[data-exercise="${item.id}"]`);
+        if (el) el.classList.toggle('complete', isAnswered(item.id));
+      });
+    }
   });
-}
-```
-
-});
-
-document.getElementById(‘progress-count’).textContent = filled;
-document.getElementById(‘progress-total’).textContent = total;
-document.getElementById(‘progress-fill’).style.width = total ? (filled / total * 100) + ‘%’ : ‘0%’;
+  document.getElementById('progress-count').textContent = filled;
+  document.getElementById('progress-total').textContent = total;
+  document.getElementById('progress-fill').style.width = total ? (filled / total * 100) + '%' : '0%';
 }
 
+// ============================================================
+// COPY
+// ============================================================
 function buildAnswerText() {
-const answers = getAllAnswers();
-const today = new Date().toLocaleDateString(‘es-ES’, { year: ‘numeric’, month: ‘long’, day: ‘numeric’ });
-const lines = [];
-
-lines.push(ASSIGNMENT_TITLE.toUpperCase());
-lines.push(today);
-lines.push(’’);
-
-SECTIONS.forEach(section => {
-lines.push(’’);
-lines.push(’=== ’ + section.title.toUpperCase() + ’ ===’);
-lines.push(section.instructions);
-lines.push(’’);
-
-```
-if (section.type === 'fill-blank') {
-  section.items.forEach(item => {
-    const ans = answers[item.id] || '________';
-    lines.push(`${item.letter}) ${item.pre}${ans} (${item.verb})${item.post}`);
-  });
-} else if (section.type === 'multiple-choice') {
-  section.items.forEach(item => {
-    const ans = answers[item.id] || '________';
-    const letter = item.id.replace(/^4/, '');
-    lines.push(`${letter}) ${item.before}${ans}${item.after}`);
-  });
-} else if (section.type === 'advice') {
-  section.items.forEach((item, idx) => {
-    const ans = answers[item.id] || '________';
-    const letter = String.fromCharCode(97 + idx);
-    lines.push(`${letter}) Situación: ${item.situation}`);
-    lines.push(`   -> ${ans}`);
-    lines.push('');
-  });
-} else if (section.type === 'cards') {
-  section.items.forEach((item, idx) => {
-    const ans = answers[item.id] || '________';
-    const letter = String.fromCharCode(97 + idx);
-    lines.push(`${letter}) ${item.context}`);
-    lines.push(`   ${item.greeting}`);
-    lines.push(`   ${ans}`);
-    lines.push(`   ${item.signoff}`);
-    lines.push('');
-  });
-} else if (section.type === 'conjugation') {
-  section.items.forEach(table => {
-    lines.push(table.verb);
-    table.forms.forEach(f => {
-      const ans = f.given || answers[f.id] || '________';
-      const marker = f.given ? ' (dado)' : '';
-      lines.push(`  ${f.pronoun.padEnd(22)} ${ans}${marker}`);
-    });
-    lines.push('');
-  });
-} else if (section.type === 'match') {
-  const matches = answers._matches || {};
-  section.people.forEach(p => {
-    const bubbleId = matches[p.id];
-    const bubble = bubbleId ? section.bubbles.find(b => b.id === bubbleId) : null;
-    const frase = bubble ? bubble.text : '________';
-    lines.push(`${p.label} (${p.desc}): "${frase}"`);
-  });
+  const answers = getAllAnswers();
+  const today = new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+  const lines = [];
+  lines.push(PARSED.title.toUpperCase());
+  lines.push(today);
   lines.push('');
-}
-```
 
-});
+  PARSED.sections.forEach(section => {
+    lines.push('');
+    lines.push('=== ' + section.title.toUpperCase() + ' ===');
+    if (section.instructions) lines.push(section.instructions);
+    lines.push('');
 
-return lines.join(’\n’);
+    if (section.type === 'fill-blank') {
+      section.items.forEach(item => {
+        const ans = answers[item.id] || '________';
+        lines.push(`${item.letter}) ${item.pre}${ans} (${item.verb})${item.post}`);
+      });
+    } else if (section.type === 'multiple-choice') {
+      section.items.forEach(item => {
+        const ans = answers[item.id] || '________';
+        lines.push(`${item.letter}) ${item.before}${ans}${item.after}`);
+      });
+    } else if (section.type === 'advice') {
+      section.items.forEach(item => {
+        const ans = answers[item.id] || '________';
+        lines.push(`${item.letter}) Situación: ${item.situation}`);
+        lines.push(`   -> ${ans}`);
+        lines.push('');
+      });
+    } else if (section.type === 'cards') {
+      section.items.forEach(item => {
+        const ans = answers[item.id] || '________';
+        lines.push(`${item.letter}) ${item.context}`);
+        if (item.greeting) lines.push(`   ${item.greeting}`);
+        lines.push(`   ${ans}`);
+        if (item.signoff) lines.push(`   ${item.signoff}`);
+        lines.push('');
+      });
+    } else if (section.type === 'conjugation') {
+      (section.tables || []).forEach(table => {
+        lines.push(table.verb);
+        table.forms.forEach(f => {
+          const ans = f.given || answers[f.id] || '________';
+          const marker = f.given ? ' (dado)' : '';
+          lines.push(`  ${f.pronoun.padEnd(22)} ${ans}${marker}`);
+        });
+        lines.push('');
+      });
+    } else if (section.type === 'match') {
+      const matches = answers._matches || {};
+      (section.people || []).forEach(p => {
+        const bubbleId = matches[p.id];
+        const bubble = bubbleId ? (section.bubbles || []).find(b => b.id === bubbleId) : null;
+        const frase = bubble ? bubble.text : '________';
+        lines.push(`${p.label} (${p.desc}): "${frase}"`);
+      });
+      lines.push('');
+    }
+  });
+  return lines.join('\n');
 }
 
 async function copyAnswers() {
-const text = buildAnswerText();
-const btn = document.getElementById(‘copy-btn’);
-
-if (navigator.clipboard && window.isSecureContext) {
-try { await navigator.clipboard.writeText(text); flashCopied(btn); return; } catch (e) {}
-}
-try {
-const ta = document.createElement(‘textarea’);
-ta.value = text;
-ta.setAttribute(‘readonly’, ‘’);
-ta.style.position = ‘fixed’; ta.style.top = ‘0’; ta.style.left = ‘0’; ta.style.opacity = ‘0’;
-document.body.appendChild(ta);
-ta.focus(); ta.select(); ta.setSelectionRange(0, text.length);
-const ok = document.execCommand(‘copy’);
-document.body.removeChild(ta);
-if (ok) { flashCopied(btn); return; }
-} catch (e) {}
-showPreviewModal(text);
+  const text = buildAnswerText();
+  const btn = document.getElementById('copy-btn');
+  if (navigator.clipboard && window.isSecureContext) {
+    try { await navigator.clipboard.writeText(text); flashCopied(btn); return; } catch (e) {}
+  }
+  try {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed'; ta.style.top = '0'; ta.style.left = '0'; ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.focus(); ta.select(); ta.setSelectionRange(0, text.length);
+    const ok = document.execCommand('copy');
+    document.body.removeChild(ta);
+    if (ok) { flashCopied(btn); return; }
+  } catch (e) {}
+  showPreviewModal(text);
 }
 
 function flashCopied(btn) {
-const original = btn.textContent;
-btn.textContent = ‘¡Copiado!’;
-btn.classList.add(‘copied’);
-setTimeout(() => { btn.textContent = original; btn.classList.remove(‘copied’); }, 1800);
+  const original = btn.textContent;
+  btn.textContent = '¡Copiado!';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1800);
 }
 
 function showPreviewModal(text) {
-document.getElementById(‘preview-text’).textContent = text;
-document.getElementById(‘preview-modal’).classList.add(‘show’);
+  document.getElementById('preview-text').textContent = text;
+  document.getElementById('preview-modal').classList.add('show');
 }
-function hidePreviewModal() { document.getElementById(‘preview-modal’).classList.remove(‘show’); }
+function hidePreviewModal() { document.getElementById('preview-modal').classList.remove('show'); }
 
 async function copyFromPreview() {
-const text = document.getElementById(‘preview-text’).textContent;
-const btn = document.getElementById(‘preview-copy’);
-if (navigator.clipboard && window.isSecureContext) {
-try { await navigator.clipboard.writeText(text); flashCopied(btn); return; } catch {}
-}
-const el = document.getElementById(‘preview-text’);
-const range = document.createRange();
-range.selectNodeContents(el);
-const sel = window.getSelection();
-sel.removeAllRanges();
-sel.addRange(range);
+  const text = document.getElementById('preview-text').textContent;
+  const btn = document.getElementById('preview-copy');
+  if (navigator.clipboard && window.isSecureContext) {
+    try { await navigator.clipboard.writeText(text); flashCopied(btn); return; } catch {}
+  }
+  const el = document.getElementById('preview-text');
+  const range = document.createRange();
+  range.selectNodeContents(el);
+  const sel = window.getSelection();
+  sel.removeAllRanges();
+  sel.addRange(range);
 }
 
-function showReset() { document.getElementById(‘reset-modal’).classList.add(‘show’); }
-function hideReset() { document.getElementById(‘reset-modal’).classList.remove(‘show’); }
+function showReset() { document.getElementById('reset-modal').classList.add('show'); }
+function hideReset() { document.getElementById('reset-modal').classList.remove('show'); }
 function doReset() {
-localStorage.removeItem(STORAGE_KEY);
-renderAll();
-hideReset();
+  localStorage.removeItem(STORAGE_KEY);
+  renderAll();
+  hideReset();
 }
 
-document.addEventListener(‘DOMContentLoaded’, () => {
-renderAll();
-document.getElementById(‘copy-btn’).addEventListener(‘click’, copyAnswers);
-document.getElementById(‘reset-btn’).addEventListener(‘click’, showReset);
-document.getElementById(‘reset-cancel’).addEventListener(‘click’, hideReset);
-document.getElementById(‘reset-confirm’).addEventListener(‘click’, doReset);
-document.getElementById(‘preview-close’).addEventListener(‘click’, hidePreviewModal);
-document.getElementById(‘preview-copy’).addEventListener(‘click’, copyFromPreview);
-document.getElementById(‘reset-modal’).addEventListener(‘click’, (e) => { if (e.target.id === ‘reset-modal’) hideReset(); });
-document.getElementById(‘preview-modal’).addEventListener(‘click’, (e) => { if (e.target.id === ‘preview-modal’) hidePreviewModal(); });
-window.addEventListener(‘pagehide’, saveAnswers);
-document.addEventListener(‘visibilitychange’, () => { if (document.hidden) saveAnswers(); });
-});
-</script>
+// ============================================================
+// LOAD HOMEWORK.TXT + BOOT
+// ============================================================
+async function boot() {
+  const sectionsEl = document.getElementById('sections');
+  try {
+    // Cache-bust so updates appear immediately
+    const resp = await fetch('homework.txt?t=' + Date.now(), { cache: 'no-store' });
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const raw = await resp.text();
+    PARSED = parseHomework(raw);
 
+    // Version the storage by hash of the raw content so new homework gets a fresh slate
+    let hash = 0;
+    for (let i = 0; i < raw.length; i++) hash = (hash * 31 + raw.charCodeAt(i)) | 0;
+    STORAGE_KEY = 'homework-' + hash;
+
+    renderAll();
+  } catch (e) {
+    document.getElementById('title').textContent = 'Error al cargar';
+    sectionsEl.innerHTML = `
+      <div class="status-box error">
+        <strong>No se pudo cargar homework.txt</strong><br><br>
+        Asegúrate de que el archivo <code>homework.txt</code> existe en el mismo directorio que <code>index.html</code>.<br><br>
+        <span style="font-size:11px;">Detalle: ${escapeHTML(e.message || String(e))}</span>
+      </div>
+    `;
+  }
+
+  document.getElementById('copy-btn').addEventListener('click', copyAnswers);
+  document.getElementById('reset-btn').addEventListener('click', showReset);
+  document.getElementById('reset-cancel').addEventListener('click', hideReset);
+  document.getElementById('reset-confirm').addEventListener('click', doReset);
+  document.getElementById('preview-close').addEventListener('click', hidePreviewModal);
+  document.getElementById('preview-copy').addEventListener('click', copyFromPreview);
+  document.getElementById('reset-modal').addEventListener('click', (e) => { if (e.target.id === 'reset-modal') hideReset(); });
+  document.getElementById('preview-modal').addEventListener('click', (e) => { if (e.target.id === 'preview-modal') hidePreviewModal(); });
+  window.addEventListener('pagehide', saveAnswers);
+  document.addEventListener('visibilitychange', () => { if (document.hidden) saveAnswers(); });
+}
+
+document.addEventListener('DOMContentLoaded', boot);
+</script>
 </body>
 </html>
