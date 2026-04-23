@@ -1,7 +1,7 @@
 import { getStore } from "@netlify/blobs";
 import type { Context, Config } from "@netlify/functions";
 
-// Session IDs must be 6-32 chars, lowercase alphanumeric, to prevent weird/abusive keys
+// Session IDs must be 6-32 chars, lowercase alphanumeric
 const VALID_SESSION = /^[a-z0-9]{6,32}$/;
 
 export default async (req: Request, context: Context) => {
@@ -20,9 +20,11 @@ export default async (req: Request, context: Context) => {
 
   try {
     if (req.method === "GET") {
-      const data = await store.get(key, { type: "json" });
+      const stored = await store.get(key, { type: "json" });
+      // stored is { answers: {...}, updatedAt: "..." } or null
+      const answers = (stored && stored.answers) ? stored.answers : {};
       return new Response(
-        JSON.stringify({ answers: data || {} }),
+        JSON.stringify({ answers }),
         { status: 200, headers: { "Content-Type": "application/json" } }
       );
     }
