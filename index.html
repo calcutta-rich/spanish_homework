@@ -911,7 +911,6 @@ function renderAll(savedAnswers) {
   updateAllProgress();
   updateNextTabButton();
   // Also re-check on scroll (in case user scrolls tabs manually)
-  const tabsEl = document.getElementById('tabs');
   if (tabsEl) tabsEl.addEventListener('scroll', updateNextTabButton, { passive: true });
 }
 
